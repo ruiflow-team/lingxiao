@@ -312,34 +312,29 @@ class ProfessionalTranslationPipeline:
     }
 
     def _glossary_protect(self, text: str, source_lang: str, target_lang: str):
-        """译前：把 glossary 源词替换为 placeholder，返回 (placeholdered_text, mapping)。
-        placeholder 用 ZGLX{i}Z 形式，NLLB 一般保留或微调，再走译后还原兜底。
+        """译前：glossary v0.5 策略 = 不做替换。
+        ZGLX{i}Z 和 __GL00__ 都让 NLLB 产生新猜词（"个子"/"在家里"）。
+        让原文直接进 NLLB，译后用 _DEFAULT_GLOSSARY_ZH_BAD_FIX 硬修正。
         """
-        mapping = {}  # placeholder -> target_zh
-        if target_lang not in ("zh", "zh-CN", "zh_cn", "中文"):
-            return text, mapping
-        out = text
-        idx = 0
-        # 先匹配长串，避免 LingXiao 被 lingxiao 抢先
-        items = sorted(self._DEFAULT_GLOSSARY_EN_TO_ZH.items(), key=lambda kv: -len(kv[0]))
-        for src, dst in items:
-            if src in out:
-                ph = f"ZGLX{idx}Z"
-                out = out.replace(src, ph)
-                mapping[ph] = dst
-                idx += 1
-        return out, mapping
+        return text, {}
+
 
     def _glossary_restore(self, translated: str, mapping: dict, target_lang: str) -> str:
         """译后：还原 placeholder + 硬修正已知误译。"""
         out = translated
         for ph, dst in mapping.items():
-            # NLLB 可能把 ZGLX0Z 切成 "Z GL X 0 Z" 或加空格，做容错替换
+            # NLLB 可能把 __GL00__ 切成 "Z GL X 0 Z" 或加空格，做容错替换
             out = out.replace(ph, dst)
             # 容错：去空格变体
             ph_loose = " ".join(list(ph))
             if ph_loose in out:
                 out = out.replace(ph_loose, dst)
+            # 额外容错：__GL00__ 变体
+            ph_idx = ph[4:6] if len(ph) >= 8 else ""
+            if ph_idx:
+                for variant in (ph.lower(), f"__ GL{ph_idx} __", f"GL{ph_idx}", f"gl{ph_idx}", f"个{ph_idx}子"):
+                    if variant and variant in out:
+                        out = out.replace(variant, dst)
         if target_lang in ("zh", "zh-CN", "zh_cn", "中文"):
             for bad, good in self._DEFAULT_GLOSSARY_ZH_BAD_FIX.items():
                 if bad in out:

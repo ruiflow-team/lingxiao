@@ -9,6 +9,16 @@
 
 所有环节本地跑通，零联网（首次需下模型）。
 
+
+## 🎬 端到端 Demo
+
+实拍：RUIFLOW 自家 9/10 武侠角色 + 英文音频 → 中文配音 + 唇同步（4 秒，本地 CPU 推理）
+
+![lipsync demo](docs/media/lipsync_demo.gif)
+
+> 上图：白剑客 PNG → ffmpeg 静帧视频 → Wav2Lip 唇同步 → 480p GIF。
+> 实测 mp4：5.04 秒，160 KB，零联网（首次需 ~3GB 模型）。
+
 ## 🎯 当前能做
 
 - ✅ 自动识别英文视频 → 出中文字幕（Whisper）
