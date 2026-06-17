@@ -1,7 +1,27 @@
 # 凌霄 LingXiao｜本地视频翻译 / 配音 / 唇同步
 
+[![Release](https://img.shields.io/github/v/release/ruiflow-team/lingxiao?include_prereleases&color=5AA9D6)](https://github.com/ruiflow-team/lingxiao/releases)
+[![License](https://img.shields.io/badge/license-Apache%202.0-667EEA)](LICENSE)
+[![Pages](https://img.shields.io/badge/pages-live-2ECFB0)](https://ruiflow-team.github.io/lingxiao/)
+[![¥0](https://img.shields.io/badge/启动成本-¥0-FF8C00)](#-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B)
+[![Local First](https://img.shields.io/badge/100%25-本地运行-667EEA)](#-%E5%AE%89%E5%85%A8%E8%BE%B9%E7%95%8C)
+[![Discussions](https://img.shields.io/github/discussions/ruiflow-team/lingxiao?color=5AA9D6)](https://github.com/ruiflow-team/lingxiao/discussions)
+
 > 把英文（或其他语言）视频，自动翻成中文配音 + 唇同步的桌面工具。
 > 所有模型本地运行，¥0 即可启动；可选连云端 API 升级质量。
+>
+> 🌊 **可以看作 immersive-translate 的本地视频版本**：immersive-translate 专注网页/PDF 双语翻译，凌霄专注 mp4 视频 → 中文配音 → 唇同步 的本地闭环。
+>
+> ⭐ 如果凌霄对你有帮助，点个 Star 让更多人看见～
+
+## 🎯 为什么选凌霄
+
+| 其他方案 | 凌霄 |
+|---|---|
+| 微软 Clipchamp / 记忆 = 云端，上传你的视频 | **100% 本地，你的视频不出机器** |
+| RunwayML / Heygen = $20+/月订阅 | **¥0 启动，后期可选连云接口** |
+| Wav2Lip 官方 = 要自己部署 | **一键安装 + 中文 UI + 桌面 GUI** |
+| Whisper 官方 = 只能字幕 | **识别 + 翻译 + 配音 + 唇同步 端到端** |
 
 ## ⚡ 一句话
 
