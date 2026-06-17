@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv-lingxiao/
+*.egg-info/
+build/
+dist/
+
+# Models (用户自己下载，不入仓库；2.3GB+)
+models/.modelscope-cache/
+models/nllb-200-distilled-600M/
+models/wav2lip/checkpoints/
+models/whisper/
+models/F5-TTS/
+models/GPT-SoVITS/
+models/SpeechT5/
+
+# 大量历史下载脚本结果
+download_*.log
+*.partial
+
+# 用户运行产物
+output/
+temp/
+logs/
+
+# 凭证（永远不入仓库）
+*.env
+.env*
+secrets*
+*key*.json
+*.token
+*token*
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# 历史草稿/备份
+*.bak
+*.bak.*
+*.backup
+*.old
+main.py.bak.*
+
+# 历史 download 试错文件（保留 1 个最终版即可）
+download_speecht5_v2.sh
+download_nllb_v2.sh
+download_nllb_v3.sh
+
+# Wav2Lip 大模型
+deps/Wav2Lip/face_detection/detection/sfd/s3fd.pth
+
+# 整个 models 目录（用户自己跑 scripts/download_models.py 生成）
+/models/

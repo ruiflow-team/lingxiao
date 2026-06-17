@@ -1,0 +1,25 @@
+# 凌霄智能影视翻译系统 - 依赖清单
+
+# Core - UI
+PyQt5==5.15.10
+
+# Core - AI
+openai-whisper>=20250625
+edge-tts>=7.0.0
+imageio-ffmpeg>=0.6.0
+soundfile>=0.12.0
+librosa>=0.10.0
+deep-translator>=1.11.0
+
+# Core - 处理
+numpy>=1.24.0
+loguru>=0.7.0
+requests>=2.31.0
+
+# 云端服务
+fastapi>=0.110.0
+uvicorn>=0.27.0
+python-multipart>=0.0.9
+
+# 开发工具
+pyinstaller>=6.3.0

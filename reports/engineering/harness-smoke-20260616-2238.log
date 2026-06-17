@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/Users/liuxiansheng/lingxiao/harness_adapter/fos_runner.py", line 12, in <module>
+    from core.pro_pipeline import ProfessionalTranslationPipeline
+ModuleNotFoundError: No module named 'core'

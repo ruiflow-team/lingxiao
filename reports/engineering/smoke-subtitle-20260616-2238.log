@@ -1,0 +1,17 @@
+[  5%] doctor 完成
+[ 10%] 输入视频可读
+[ 20%] 音频提取完成
+[ 45%] ASR 完成
+[ 62%] 翻译完成
+[100%] 完成
+{
+  "job_id": "lx_4817acc4b1c3",
+  "status": "degraded",
+  "output_dir": "output/jobs/smoke-v01",
+  "errors": [],
+  "warnings": [
+    "部分可选依赖缺失，进入降级可运行模式",
+    "Whisper 不可用，使用同名 SRT 降级：lingxiao_smoke.srt；原因：No module named 'loguru'",
+    "翻译器初始化失败，使用内置低保真翻译降级：No module named 'loguru'"
+  ]
+}

@@ -1,0 +1,7 @@
+1
+00:00:00,000 --> 00:00:01,300
+Hello LingXiao.
+
+2
+00:00:01,300 --> 00:00:03,000
+This is a professional desktop app smoke test.

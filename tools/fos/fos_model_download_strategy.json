@@ -1,0 +1,87 @@
+{
+  "schema": "fos_model_download_strategy_v0_1",
+  "doctrine_id": "FOS-DL-CN-2026-06-17",
+  "authored_at": "2026-06-17T19:50:00+08:00",
+  "authored_by": "CEO 小溪",
+  "context": "凌霄 NLLB-200 下载实测：hf-mirror 40KB/s 估 16h+，modelscope 阿里 CDN 25MB/s 实测 102s 完成（≈600x）",
+  "evidence": {
+    "model": "AI-ModelScope/nllb-200-distilled-600M",
+    "size_mb": 2300,
+    "hf_mirror_observed_kbps": 40,
+    "modelscope_observed_mbps": 25,
+    "ratio_modelscope_over_hf_mirror": 600,
+    "memo_path": "memory/2026-06-17.md"
+  },
+  "rules": [
+    {
+      "id": "R1_default_provider_order",
+      "rule": "国内主机下载大模型权重默认顺序：modelscope > hf-mirror > raw HuggingFace",
+      "rationale": "国内出口被卡时 hf-mirror 也会慢通道，modelscope 走阿里 CDN 不被节流"
+    },
+    {
+      "id": "R2_repo_id_fallback",
+      "rule": "modelscope 命名回退链：<facebook>/<repo> → AI-ModelScope/<repo> → <repo>",
+      "rationale": "ModelScope 上 facebook/* 多被镜像到 AI-ModelScope/* 命名空间"
+    },
+    {
+      "id": "R3_background_for_large_files",
+      "rule": ">500MB 必须后台下载，主线程不阻塞会话",
+      "rationale": "CEO 时间纪律：大下载期间继续推进其他事情"
+    },
+    {
+      "id": "R4_verify_main_weight_size",
+      "rule": "完成判定看主权重文件 size 而不是仅看目录存在",
+      "rationale": "modelscope cache 含 ._____temp 临时目录，主权重最终在 __snapshots__/master/，目录存在 ≠ 下完"
+    },
+    {
+      "id": "R5_no_paid_provider_for_oss_weights",
+      "rule": "开源权重一律走免费 CDN，不走付费推理 API",
+      "rationale": "省钱模式优先；付费 API 用于实时推理而不是下权重"
+    },
+    {
+      "id": "R6_compare_before_download",
+      "rule": "下载前必须列 3-5 个候选模型并选最贴需求的",
+      "rationale": "19:14 董事长教训：直觉下载 = 浪费带宽和工时"
+    },
+    {
+      "id": "R7_record_all_attempts",
+      "rule": "任何下载尝试（成功/失败/慢）都写进当日 memory/YYYY-MM-DD.md，并把代表性数据回灌本 doctrine",
+      "rationale": "经验复利"
+    }
+  ],
+  "future_candidates": [
+    {
+      "model": "Helsinki-NLP/opus-mt-en-zh",
+      "size_mb": 300,
+      "purpose": "英中专项补强（NLLB-600M 在英中专名/口语上仍偶有瑕疵）",
+      "modelscope_repo_guess": "AI-ModelScope/opus-mt-en-zh",
+      "priority": "low",
+      "trigger": "凌霄收到付费用户反馈翻译质量不够时再装"
+    },
+    {
+      "model": "Helsinki-NLP/opus-mt-zh-en",
+      "size_mb": 300,
+      "purpose": "中英反向（凌霄当前 zh→en 也走 NLLB，质量足够，不优先）",
+      "priority": "low"
+    },
+    {
+      "model": "facebook/nllb-200-distilled-1.3B",
+      "size_mb": 5200,
+      "purpose": "若 600M 在长句/术语上拉胯可升 1.3B",
+      "priority": "low",
+      "trigger": "真实付费用户对翻译报投诉时"
+    }
+  ],
+  "anti_patterns": [
+    "不要 git clone 大权重仓库（默认全 LFS 拉很慢且占双倍空间）",
+    "不要相信『目录存在就是下完了』",
+    "不要在没下完时就改业务代码引用模型（先 cache 后接线）",
+    "不要凭直觉选模型，先列候选再选"
+  ],
+  "applied_to": [
+    "lingxiao/models/nllb-200-distilled-600M (DONE 2026-06-17 19:30)"
+  ],
+  "linked_memos": [
+    "memory/2026-06-17.md#nllb-下载工程关键发现"
+  ]
+}

@@ -1,0 +1,19 @@
+[  5%] doctor 完成
+[ 10%] 输入视频可读
+[ 20%] 音频提取完成
+2026-06-16 22:23:01.343 | INFO     | core.asr:__init__:43 - WhisperASR initialized (model: base, device: auto)
+2026-06-16 22:23:02.692 | INFO     | core.asr:_load_model:57 - Loading Whisper base on cpu...
+2026-06-16 22:23:03.403 | INFO     | core.asr:_load_model:62 - Whisper model loaded successfully
+/Users/liuxiansheng/lingxiao/.venv-lingxiao/lib/python3.9/site-packages/whisper/transcribe.py:132: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+{
+  "job_id": "lx_fc5b1c4a2e17",
+  "status": "failed",
+  "output_dir": "output/jobs/smoke-fast-translate-v01",
+  "errors": [
+    "ASR/SRT 未产出字幕段"
+  ],
+  "warnings": [
+    "部分可选依赖缺失，进入降级可运行模式"
+  ]
+}
