@@ -1,0 +1,25 @@
+{
+  "schema": "lingxiao_glossary_zh_v0_1",
+  "description": "凌霄翻译专名硬修正表（NLLB 译后 post-process）",
+  "version": "0.1",
+  "post_translate_zh": {
+    "林晓": "凌霄",
+    "林霄": "凌霄",
+    "灵霄": "凌霄",
+    "瑞流公司": "瑞流",
+    "Ling Ling": "LingXiao",
+    "LingLing": "LingXiao",
+    "瓦夫": "Wav2Lip",
+    "瓦伕": "Wav2Lip",
+    "瓦夫利普": "Wav2Lip",
+    "尼尔": "NLLB",
+    "尼尔比": "NLLB",
+    "维斯珀": "Whisper",
+    "维斯柏": "Whisper",
+    "魏斯柏": "Whisper",
+    "瑞流人工智能": "RUIFLOW AI",
+    "瑞流流": "RUIFLOW",
+    "瑞流流动": "RUIFLOW"
+  },
+  "note": "用户可在 ~/.lingxiao/glossary-zh.json 覆盖此默认值"
+}

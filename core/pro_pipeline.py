@@ -302,12 +302,30 @@ class ProfessionalTranslationPipeline:
         "NLLB": "NLLB",
     }
     # 译后硬修正表：若 NLLB 把专名错译成下列字面，强制替换回正确目标
+    @staticmethod
+    def _load_glossary_zh():
+        """加载 config/glossary-zh.json 和 ~/.lingxiao/glossary-zh.json 合并"""
+        import json as _json
+        from pathlib import Path as _P
+        merged = {}
+        for path in (
+            _P(__file__).resolve().parents[1] / "config" / "glossary-zh.json",
+            _P.home() / ".lingxiao" / "glossary-zh.json",
+        ):
+            if path.exists():
+                try:
+                    data = _json.loads(path.read_text(encoding="utf-8"))
+                    merged.update(data.get("post_translate_zh", {}))
+                except Exception:
+                    pass
+        return merged
+
     _DEFAULT_GLOSSARY_ZH_BAD_FIX = {
         "林晓": "凌霄",
         "林霄": "凌霄",
         "灵霄": "凌霄",
-        "瑞流公司": "瑞流",  # 避免重复加公司
-        "Ling Ling": "LingXiao",  # 凌霄 -> en 反向常见错
+        "瑞流公司": "瑞流",
+        "Ling Ling": "LingXiao",
         "LingLing": "LingXiao",
     }
 
@@ -336,7 +354,7 @@ class ProfessionalTranslationPipeline:
                     if variant and variant in out:
                         out = out.replace(variant, dst)
         if target_lang in ("zh", "zh-CN", "zh_cn", "中文"):
-            for bad, good in self._DEFAULT_GLOSSARY_ZH_BAD_FIX.items():
+            for bad, good in {**self._DEFAULT_GLOSSARY_ZH_BAD_FIX, **self._load_glossary_zh()}.items():
                 if bad in out:
                     out = out.replace(bad, good)
         return out
