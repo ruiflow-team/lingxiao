@@ -1,4 +1,6 @@
-# 凌霄 LingXiao｜本地视频翻译 / 配音 / 唇同步
+# 凌霄 LingXiao
+
+[English Version](README-en.md) | 简体中文｜本地视频翻译 / 配音 / 唇同步
 
 [![Release](https://img.shields.io/github/v/release/ruiflow-team/lingxiao?include_prereleases&color=5AA9D6)](https://github.com/ruiflow-team/lingxiao/releases)
 [![License](https://img.shields.io/badge/license-Apache%202.0-667EEA)](LICENSE)
