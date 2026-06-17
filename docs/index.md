@@ -22,7 +22,7 @@ description: 本地视频翻译 / 配音 / 唇同步桌面工具
 
 ## 📥 下载
 
-最新版：[**v0.1.0-beta**](https://github.com/ruiflow-team/lingxiao/releases/tag/v0.1.0-beta)
+最新版：[**v0.1.1-beta**](https://github.com/ruiflow-team/lingxiao/releases/tag/v0.1.1-beta) · 历史版本：[v0.1.0-beta](https://github.com/ruiflow-team/lingxiao/releases/tag/v0.1.0-beta)
 
 ```bash
 git clone https://github.com/ruiflow-team/lingxiao.git
